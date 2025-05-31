@@ -6,7 +6,7 @@
 struct NODE {
   int child_low  = -1;
   int child_high = -1;
-  
+  int file_addr; 
   int data;
   
   // return return address of the chossen child
@@ -37,14 +37,14 @@ struct tree {
       } else {
 
         current_node = nodes[current_node].binary_decide(target);
-        if (current_node == -1 || current_node > static_cast<int>(nodes.size())) {
+        if (current_node == -1 || current_node > nodes.size()) {
           throw "Exemption: something went wrong";
         }
       }
     }
   }
 
-  void add_node(int data) {
+  NODE add_node(int data) {
     // create new node sctruct
     NODE node;
     node.data = data;
@@ -53,7 +53,7 @@ struct tree {
     // create the mother(of all) node
     if (nodes.size() == 0) {
       nodes.push_back(node);
-      return;
+      return node;
       
     } else {
       int* next_node = &nodes[0].binary_decide(data);
@@ -65,35 +65,36 @@ struct tree {
           
         } // else its the end
         else {
-          *next_node = static_cast<int>(nodes.size());
+          *next_node = nodes.size();
           nodes.push_back(node);
           
-          return;
+          return node;
         }
       }
     }
   }
   void show_tree () {
     std::cout << "{";
-    for (int i = 0; i <= nodes.size()-1; i++) {
+    for (int i = 0; i < (int)nodes.size(); i++) {
       std::cout << "node_" << i << ": { low: " << nodes[i].child_low << ",high: " << nodes[i].child_high << ",data: " << nodes[i].data << "},";
     }
     std::cout << "}" << std::endl;
   }
 };
 
-// int main (int argc, char *argv[]) {
-//   tree bin_tree;
-//   
-//   int d[9] = {8,3,10,1,6,14,4,7,13};
-//   for (int i = 0; i <= 8; i++) {
-//     bin_tree.add_node(d[i]);
-//   }
-//   
-//   int num = bin_tree.find_node(4);
+int main (int argc, char *argv[]) {
+  tree bin_tree;
+  
+  int d[9] = {8,3,10,1,6,14,4,7,13};
+  for (int i = 0; i < (int)std::size(d); i++) {
+    bin_tree.add_node(d[i]);
+  }
+  
+  int num = bin_tree.find_node(4);
 
-//   std::cout << "node num: " << num << std::endl;
-
+  std::cout << "node num: " << num << std::endl;
+  bin_tree.show_tree();
+}
 
 
 
