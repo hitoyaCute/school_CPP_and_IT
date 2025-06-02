@@ -82,19 +82,19 @@ struct tree {
   }
 };
 
-int main (int argc, char *argv[]) {
-  tree bin_tree;
-  
-  int d[9] = {8,3,10,1,6,14,4,7,13};
-  for (int i = 0; i < (int)std::size(d); i++) {
-    bin_tree.add_node(d[i]);
-  }
-  
-  int num = bin_tree.find_node(4);
+// int main (int argc, char *argv[]) {
+//   tree bin_tree;
+//   
+//   int d[9] = {8,3,10,1,6,14,4,7,13};
+//   for (int i = 0; i < (int)std::size(d); i++) {
+//     bin_tree.add_node(d[i]);
+//   }
+//   
+//   int num = bin_tree.find_node(4);
 
-  std::cout << "node num: " << num << std::endl;
-  bin_tree.show_tree();
-}
+//   std::cout << "node num: " << num << std::endl;
+//   bin_tree.show_tree();
+// }
 
 
 

@@ -1,0 +1,2 @@
+/home/hitoya/Downloads/programs/projects/school_CPP_and_IT/build/CMakeFiles/edit_cache.dir
+/home/hitoya/Downloads/programs/projects/school_CPP_and_IT/build/CMakeFiles/rebuild_cache.dir

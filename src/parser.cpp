@@ -1,63 +1,74 @@
 // this will parse the .list
-
+#include <iostream>
+#include <cstdio>
 #include <fstream>
 #include <iterator>
+#include <unordered_map>
 #include <string>
 #include <vector>
 #include "bin-tree.hpp"
 #include "tools.hpp"
 
-// get file alr splited by lines
-std::vector<std::string> open_file(std::string dir) {
-  std::ifstream list_file(dir);
-  if (list_file.is_open()) {
-    std::vector<std::string> output;
-    
-    // read the file idk...
-    std::string line;
-    while (std::getline(list_file, line)) {
-      output.push_back(line);
+// fetch atributes of the data from the list file...
+std::unordered_map<std::string, std::string> fetch_info(int addr, std::string dir) {
+  std::ifstream file(dir);
+  
+  if (file.is_open()) {
+    int line_id = 0;
+    std::string buffer;
+    bool reading = false;
+    std::unordered_map<std::string, std::string> atributes;
+
+    while (std::getline(file, buffer)) {
+      if (!reading && line_id == addr) {
+        reading = true;
+      } else if (reading) {
+        if (buffer.at((int)std::size(buffer)-1) == ':') {
+          return atributes;
+        }
+        std::vector<std::string> attr = split_string(buffer, ";");
+        if ((int)std::size(attr) != 2) {
+          throw "ParsingError: invalid list file syntax";
+        }
+        atributes[attr[0]] = attr[1];
+      } else if (buffer.at((int)buffer.size()-1) == ':') {
+        return atributes;
+      }
     }
-    return output;
+    return atributes;
   } else {
-    throw "FileContextError:something went wrong while reading the file";
+    throw "FileContextError: cant open file";
   }
 }
 
-// fetch atributes of the data from the list file...
-std::vector<std::string> fetch_info(int addr, std::string dir) {
-  std::ifstream file(dir);
-  
-}
 // uhhh parse the .list
-void parse(std::string list_dir) {
+tree fetch_file(std::string list_dir) {
   // create vars
   tree bin_tree;
-  std::vector<std::string> list = open_file(list_dir);
-
-  for (int line_id = 0; line_id < (int)list.size(); line_id++) {
-    std::string line = list[line_id];
-    int len = (int)std::size(line);
-    
-    if (line.at(len-1) == ':') {
-      line.resize(len-1);
-      int name = str_to_int(line);
-      NODE node = bin_tree.add_node(name);
-      node.file_addr = line_id;
+  std::ifstream file(list_dir);
+  if (!file) {
+    std::cerr << "FileContextError: cant open the file" << std::endl;
+    throw 1;
+  }
+  
+  std::string line;
+  while (std::getline(file, line)) {
+    if (line.at((int)line.size()-1) == ':') {
+      line.pop_back();
+      bin_tree.add_node(string_hash(line));
       line.clear();
     }
   }
+  return bin_tree;
+}
+
+void show_attr(std::unordered_map<std::string,std::string> attr) {
+  for (auto i : attr) {
+    std::cout << i.first << ":" << strip(i.second) << std::endl;
+  }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
+// int main (int argc, char *argv[]) {
+//   std::unordered_map<std::string, std::string> attr = fetch_info(0, "test.file");
+//   show_attr(attr);
