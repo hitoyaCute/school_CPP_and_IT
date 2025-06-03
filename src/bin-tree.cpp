@@ -13,6 +13,7 @@ struct NODE {
   int& binary_decide(int target) {
     if (data < target) {
       return child_low;
+      
     } else {
       return child_high;
     }
@@ -24,7 +25,7 @@ struct tree {
   std::vector<NODE> nodes;
 
   int find_node(int target) {
-    if (nodes.size() == 0) {
+    if ((int)std::size(nodes) == 0) {
       throw "ValueError: \"you will never find food from a empty freezer\" - meu";
     }
     int current_node = 0;
@@ -51,7 +52,7 @@ struct tree {
     
     // the logic that organize the nodes on a binary tree
     // create the mother(of all) node
-    if (nodes.size() == 0) {
+    if ((int)std::size(nodes) == 0) {
       nodes.push_back(node);
       return node;
       
@@ -76,7 +77,10 @@ struct tree {
   void show_tree () {
     std::cout << "{";
     for (int i = 0; i < (int)nodes.size(); i++) {
-      std::cout << "node_" << i << ": { low: " << nodes[i].child_low << ",high: " << nodes[i].child_high << ",data: " << nodes[i].data << "},";
+      std::cout << "node_" << i <<
+        ": { low: " << nodes[i].child_low <<
+        ",high: " << nodes[i].child_high <<
+        ",data: " << nodes[i].data << "},";
     }
     std::cout << "}" << std::endl;
   }
