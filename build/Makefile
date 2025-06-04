@@ -48,10 +48,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/cmake/1463/bin/cmake
+CMAKE_COMMAND = /home/hitoya/cmake-4.0.0-rc2-linux-x86_64/bin/cmake
 
 # The command to remove a file.
-RM = /snap/cmake/1463/bin/cmake -E rm -f
+RM = /home/hitoya/cmake-4.0.0-rc2-linux-x86_64/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	/snap/cmake/1463/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/hitoya/cmake-4.0.0-rc2-linux-x86_64/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -116,6 +116,115 @@ depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+#=============================================================================
+# Target rules for targets named file_finder
+
+# Build rule for target.
+file_finder: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 file_finder
+.PHONY : file_finder
+
+# fast build rule for target.
+file_finder/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_finder.dir/build.make CMakeFiles/file_finder.dir/build
+.PHONY : file_finder/fast
+
+src/bin-tree.o: src/bin-tree.cpp.o
+.PHONY : src/bin-tree.o
+
+# target to build an object file
+src/bin-tree.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_finder.dir/build.make CMakeFiles/file_finder.dir/src/bin-tree.cpp.o
+.PHONY : src/bin-tree.cpp.o
+
+src/bin-tree.i: src/bin-tree.cpp.i
+.PHONY : src/bin-tree.i
+
+# target to preprocess a source file
+src/bin-tree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_finder.dir/build.make CMakeFiles/file_finder.dir/src/bin-tree.cpp.i
+.PHONY : src/bin-tree.cpp.i
+
+src/bin-tree.s: src/bin-tree.cpp.s
+.PHONY : src/bin-tree.s
+
+# target to generate assembly for a file
+src/bin-tree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_finder.dir/build.make CMakeFiles/file_finder.dir/src/bin-tree.cpp.s
+.PHONY : src/bin-tree.cpp.s
+
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_finder.dir/build.make CMakeFiles/file_finder.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_finder.dir/build.make CMakeFiles/file_finder.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_finder.dir/build.make CMakeFiles/file_finder.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
+src/parser.o: src/parser.cpp.o
+.PHONY : src/parser.o
+
+# target to build an object file
+src/parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_finder.dir/build.make CMakeFiles/file_finder.dir/src/parser.cpp.o
+.PHONY : src/parser.cpp.o
+
+src/parser.i: src/parser.cpp.i
+.PHONY : src/parser.i
+
+# target to preprocess a source file
+src/parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_finder.dir/build.make CMakeFiles/file_finder.dir/src/parser.cpp.i
+.PHONY : src/parser.cpp.i
+
+src/parser.s: src/parser.cpp.s
+.PHONY : src/parser.s
+
+# target to generate assembly for a file
+src/parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_finder.dir/build.make CMakeFiles/file_finder.dir/src/parser.cpp.s
+.PHONY : src/parser.cpp.s
+
+src/tools.o: src/tools.cpp.o
+.PHONY : src/tools.o
+
+# target to build an object file
+src/tools.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_finder.dir/build.make CMakeFiles/file_finder.dir/src/tools.cpp.o
+.PHONY : src/tools.cpp.o
+
+src/tools.i: src/tools.cpp.i
+.PHONY : src/tools.i
+
+# target to preprocess a source file
+src/tools.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_finder.dir/build.make CMakeFiles/file_finder.dir/src/tools.cpp.i
+.PHONY : src/tools.cpp.i
+
+src/tools.s: src/tools.cpp.s
+.PHONY : src/tools.s
+
+# target to generate assembly for a file
+src/tools.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/file_finder.dir/build.make CMakeFiles/file_finder.dir/src/tools.cpp.s
+.PHONY : src/tools.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -124,6 +233,19 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... file_finder"
+	@echo "... src/bin-tree.o"
+	@echo "... src/bin-tree.i"
+	@echo "... src/bin-tree.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/parser.o"
+	@echo "... src/parser.i"
+	@echo "... src/parser.s"
+	@echo "... src/tools.o"
+	@echo "... src/tools.i"
+	@echo "... src/tools.s"
 .PHONY : help
 
 

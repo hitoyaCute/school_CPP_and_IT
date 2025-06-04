@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/home/hitoya/Downloads/programs/projects/school_CPP_and_IT/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/file_finder.dir/src/main.cpp.o -c /home/hitoya/Downloads/programs/projects/school_CPP_and_IT/src/main.cpp",
+  "file": "/home/hitoya/Downloads/programs/projects/school_CPP_and_IT/src/main.cpp",
+  "output": "CMakeFiles/file_finder.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/hitoya/Downloads/programs/projects/school_CPP_and_IT/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/file_finder.dir/src/bin-tree.cpp.o -c /home/hitoya/Downloads/programs/projects/school_CPP_and_IT/src/bin-tree.cpp",
+  "file": "/home/hitoya/Downloads/programs/projects/school_CPP_and_IT/src/bin-tree.cpp",
+  "output": "CMakeFiles/file_finder.dir/src/bin-tree.cpp.o"
+},
+{
+  "directory": "/home/hitoya/Downloads/programs/projects/school_CPP_and_IT/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/file_finder.dir/src/parser.cpp.o -c /home/hitoya/Downloads/programs/projects/school_CPP_and_IT/src/parser.cpp",
+  "file": "/home/hitoya/Downloads/programs/projects/school_CPP_and_IT/src/parser.cpp",
+  "output": "CMakeFiles/file_finder.dir/src/parser.cpp.o"
+},
+{
+  "directory": "/home/hitoya/Downloads/programs/projects/school_CPP_and_IT/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/file_finder.dir/src/tools.cpp.o -c /home/hitoya/Downloads/programs/projects/school_CPP_and_IT/src/tools.cpp",
+  "file": "/home/hitoya/Downloads/programs/projects/school_CPP_and_IT/src/tools.cpp",
+  "output": "CMakeFiles/file_finder.dir/src/tools.cpp.o"
+}
+]
