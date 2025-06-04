@@ -168,4 +168,5 @@ CMakeFiles/file_finder.dir/src/parser.cpp.o: \
  /usr/include/c++/13/bits/stl_bvector.h \
  /usr/include/c++/13/bits/vector.tcc \
  /home/hitoya/Downloads/programs/projects/school_CPP_and_IT/src/bin-tree.hpp \
- /home/hitoya/Downloads/programs/projects/school_CPP_and_IT/src/tools.hpp
+ /home/hitoya/Downloads/programs/projects/school_CPP_and_IT/src/tools.hpp \
+ /home/hitoya/Downloads/programs/projects/school_CPP_and_IT/src/parser.hpp

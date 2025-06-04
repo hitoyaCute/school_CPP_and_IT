@@ -1,11 +1,11 @@
+#pragma once
 #include <vector>
-#pragma ones
 
 struct NODE {
-  int data;
+  int data = 0;
   int file_addr;
-  int child_low;
-  int child_high;
+  int child_low = -1;
+  int child_high = -1;
 
   int& binary_decide(int target);
 };
@@ -13,7 +13,7 @@ struct NODE {
 struct tree {
   std::vector<NODE> nodes;
 
-  void show();
+  void show_tree();
   NODE add_node(int data);
   int find_node(int target);
 };

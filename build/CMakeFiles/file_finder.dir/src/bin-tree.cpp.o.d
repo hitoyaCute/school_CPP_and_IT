@@ -182,4 +182,5 @@ CMakeFiles/file_finder.dir/src/bin-tree.cpp.o: \
  /usr/include/c++/13/bits/stl_uninitialized.h \
  /usr/include/c++/13/bits/stl_vector.h \
  /usr/include/c++/13/bits/stl_bvector.h \
- /usr/include/c++/13/bits/vector.tcc
+ /usr/include/c++/13/bits/vector.tcc \
+ /home/hitoya/Downloads/programs/projects/school_CPP_and_IT/src/bin-tree.hpp

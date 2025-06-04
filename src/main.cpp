@@ -1,8 +1,8 @@
+#include <ostream>
 #include <string>
 #include "tools.hpp"
 #include "parser.hpp"
-#include "bin-tree.hpp"
-
+#include <iostream>
 
 int main(int argc, char* argv[]) {
   // first initiate the tree
@@ -15,8 +15,9 @@ int main(int argc, char* argv[]) {
     if (argc != 4) {
       throw "option find expect 2 parameters " + std::to_string(argc-1) + " are given";
     }
-    std::string arg2 = argv[2];
+    std::string arg2 = argv[3];
     int target = string_hash(arg2);
+    std::cout << "searching for '" + static_cast<std::string>(argv[3]) + "'" << std::endl;
     int matched = bin_tree.find_node(
       target);
     show_attr(fetch_info(bin_tree.nodes[matched].file_addr, static_cast<std::string>(argv[1])));

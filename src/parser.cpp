@@ -8,6 +8,7 @@
 #include <vector>
 #include "bin-tree.hpp"
 #include "tools.hpp"
+#include "parser.hpp"
 
 // fetch atributes of the data from the list file...
 std::unordered_map<std::string, std::string> fetch_info(int addr, std::string dir) {
@@ -20,10 +21,11 @@ std::unordered_map<std::string, std::string> fetch_info(int addr, std::string di
     std::unordered_map<std::string, std::string> atributes;
 
     while (std::getline(file, buffer)) {
+      std::cout << "reading: \'" + buffer + "\'" << std::endl;
       if (!reading && line_id == addr) {
         reading = true;
       } else if (reading) {
-        if (buffer.at((int)std::size(buffer)-1) == ':') {
+        if (buffer.at((int)std::size(buffer)) == ':') {
           return atributes;
         }
         std::vector<std::string> attr = split_string(buffer, ";");
@@ -31,7 +33,7 @@ std::unordered_map<std::string, std::string> fetch_info(int addr, std::string di
           throw "ParsingError: invalid list file syntax";
         }
         atributes[attr[0]] = attr[1];
-      } else if (buffer.at((int)buffer.size()-1) == ':') {
+      } else if (reading && buffer.at((int)buffer.size()) == ':') {
         return atributes;
       }
     }
@@ -63,7 +65,8 @@ tree fetch_file(std::string list_dir) {
 }
 
 void show_attr(std::unordered_map<std::string,std::string> attr) {
-  for (auto i : attr) {
+  std::cout << "working" << attr.size() << std::endl;
+  for (auto i: attr) {
     std::cout << i.first << ":" << strip(i.second) << std::endl;
   }
 }
