@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <fstream>
 #include <iterator>
+#include <stdexcept>
 #include <unordered_map>
 #include <string>
 #include <vector>
@@ -12,34 +13,38 @@
 
 // fetch atributes of the data from the list file...
 std::unordered_map<std::string, std::string> fetch_info(int addr, std::string dir) {
+  // fetch the file
   std::ifstream file(dir);
   
   if (file.is_open()) {
+    // initialization
     int line_id = 0;
     std::string buffer;
     bool reading = false;
     std::unordered_map<std::string, std::string> atributes;
 
+    // itterate over the lines of the input file
     while (std::getline(file, buffer)) {
-      std::cout << "reading: \'" + buffer + "\'" << std::endl;
+
       if (!reading && line_id == addr) {
         reading = true;
       } else if (reading) {
-        if (buffer.at((int)std::size(buffer)) == ':') {
+        if (buffer.at((int)std::size(buffer)-1) == ':') {
           return atributes;
         }
+
         std::vector<std::string> attr = split_string(buffer, ";");
+        
         if ((int)std::size(attr) != 2) {
-          throw "ParsingError: invalid list file syntax";
+          throw std::runtime_error {"ParsingError: invalid list file syntax"};
         }
+        
         atributes[attr[0]] = attr[1];
-      } else if (reading && buffer.at((int)buffer.size()) == ':') {
-        return atributes;
-      }
+      }; line_id ++;
     }
     return atributes;
   } else {
-    throw "FileContextError: cant open file";
+    throw std::runtime_error {"FileContextError: cant open file"};
   }
 }
 
@@ -48,24 +53,27 @@ tree fetch_file(std::string list_dir) {
   // create vars
   tree bin_tree;
   std::ifstream file(list_dir);
-  if (!file) {
-    std::cerr << "FileContextError: cant open the file" << std::endl;
-    throw 1;
-  }
   
+  if (!file) {
+    throw std::runtime_error {"FileContextError: cant open the file"};
+  }
+  // find the header then parse and store on the tree
   std::string line;
+  int current_line = 0;
+
   while (std::getline(file, line)) {
+    // if the line ends with ":"
     if (line.at((int)line.size()-1) == ':') {
-      line.pop_back();
-      bin_tree.add_node(string_hash(line));
-      line.clear();
-    }
+      line.pop_back(); // remove the last character on the line
+      bin_tree.add_node(string_hash(line), current_line); // add the node
+      line.clear(); // clear the line for next header
+    }; current_line++;
   }
   return bin_tree;
 }
 
+// show the attributes
 void show_attr(std::unordered_map<std::string,std::string> attr) {
-  std::cout << "working" << attr.size() << std::endl;
   for (auto i: attr) {
     std::cout << i.first << ":" << strip(i.second) << std::endl;
   }

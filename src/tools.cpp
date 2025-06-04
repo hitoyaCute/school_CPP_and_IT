@@ -2,11 +2,15 @@
 #include <string>
 #include "tools.hpp"
 
+// the object that will hash the string
 std::hash<std::string> hasher;
 
+// wrapper of hasher
 int string_hash (std::string inp) {
   return static_cast<int>(hasher(inp));
 }
+
+// function that will split a string with a delimiter
 std::vector<std::string> split_string(std::string& str, std::string delimiter) {
     std::vector<std::string> tokens;
     size_t start = 0;
@@ -19,6 +23,7 @@ std::vector<std::string> split_string(std::string& str, std::string delimiter) {
     tokens.push_back(str.substr(start));
     return tokens;
 }
+
 
 std::string strip(std::string str) {
     // Remove leading whitespace

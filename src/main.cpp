@@ -1,4 +1,5 @@
 #include <ostream>
+#include <stdexcept>
 #include <string>
 #include "tools.hpp"
 #include "parser.hpp"
@@ -10,20 +11,28 @@ int main(int argc, char* argv[]) {
 
 
   // process arguments
-  std::string arg1 = argv[2];
-  if (arg1 == "find") {
+  if (static_cast<std::string>(argv[2]) == "find") {
     if (argc != 4) {
-      throw "option find expect 2 parameters " + std::to_string(argc-1) + " are given";
+      throw "option 'find' expect 2 parameters " + std::to_string(argc-1) + " are given";
     }
-    std::string arg2 = argv[3];
-    int target = string_hash(arg2);
-    std::cout << "searching for '" + static_cast<std::string>(argv[3]) + "'" << std::endl;
-    int matched = bin_tree.find_node(
-      target);
-    show_attr(fetch_info(bin_tree.nodes[matched].file_addr, static_cast<std::string>(argv[1])));
+    // hash the argument
+    int target = string_hash(static_cast<std::string>(argv[3]));
+    std::cout << "searching for '" + static_cast<std::string>(argv[3]) + "' hashed: " << target << std::endl;
+    
+    // find the index of node that holds target node
+    int matched = bin_tree.find_node(target);
+
+    
+    int address_of_find_node = bin_tree.nodes[matched].file_addr;
+
+
+    std::cout << "address is " << address_of_find_node << " matched node is " << matched << std::endl;
+    // bin_tree.show_tree(); // for debugging
+    // show the attributes
+    show_attr(fetch_info(address_of_find_node, static_cast<std::string>(argv[1])));
     
   } else {
-    
+    std::runtime_error {"Unknown parameter '" + static_cast<std::string>(argv[2]) + "'"};
   }; 
 }
 
