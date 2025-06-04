@@ -69,6 +69,3 @@ void show_attr(std::unordered_map<std::string,std::string> attr) {
 }
 
 
-// int main (int argc, char *argv[]) {
-//   std::unordered_map<std::string, std::string> attr = fetch_info(0, "test.file");
-//   show_attr(attr);

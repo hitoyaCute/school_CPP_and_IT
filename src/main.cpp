@@ -1,6 +1,7 @@
 #include <string>
 #include "tools.hpp"
 #include "parser.hpp"
+#include "bin-tree.hpp"
 
 
 int main(int argc, char* argv[]) {
@@ -16,7 +17,8 @@ int main(int argc, char* argv[]) {
     }
     std::string arg2 = argv[2];
     int target = string_hash(arg2);
-    int matched = bin_tree.find_node(target);
+    int matched = bin_tree.find_node(
+      target);
     show_attr(fetch_info(bin_tree.nodes[matched].file_addr, static_cast<std::string>(argv[1])));
     
   } else {
