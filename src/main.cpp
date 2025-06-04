@@ -29,6 +29,7 @@ int main(int argc, char* argv[]) {
     std::cout << "address is " << address_of_find_node << " matched node is " << matched << std::endl;
     // bin_tree.show_tree(); // for debugging
     // show the attributes
+    std::cout << "\n\nfetched informaion about '" << static_cast<std::string>(argv[3]) << "' was following:" << std::endl;
     show_attr(fetch_info(address_of_find_node, static_cast<std::string>(argv[1])));
     
   } else {
