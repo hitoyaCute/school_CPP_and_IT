@@ -1,5 +1,5 @@
-#include <functional>
 #include <string>
+#include <functional>
 #include "tools.hpp"
 
 // the object that will hash the string

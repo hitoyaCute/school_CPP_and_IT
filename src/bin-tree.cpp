@@ -1,8 +1,8 @@
-#include <csignal>
-#include <iostream>
-#include <ostream>
-#include <string>
 #include <vector>
+#include <string>
+#include <csignal>
+#include <ostream>
+#include <iostream>
 #include <stdexcept>
 #include "bin-tree.hpp"
 

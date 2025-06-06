@@ -16,8 +16,8 @@ struct tree {
   std::vector<NODE> nodes;
 
   void show_tree();
-  NODE add_node(int data, int addr = 0);
   int find_node(int target);
+  NODE add_node(int data, int addr = 0);
 };
 
 
